@@ -65,7 +65,6 @@ def criar_jogador():
 
         if confirmandoEscolha == "s" or "S":
             print(f"Bem vindo ao mundo de YORKLONG, {novoJogador.nome}! ")
-            welcome_ascii  = pyfiglet.figlet_format("mountain")
 
 
         else:
