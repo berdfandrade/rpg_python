@@ -1,90 +1,58 @@
 
 
 
-class Guerreiro:
-    def __init__(self):
-        self.nome = "Guerreiro"
-        self.vida = 1000
-        self.forca = 100
-        self.defesa = 80
-        self.agilidade = 5
-        self.inteligencia = 50
-
-    def __str__(self):
-        return f" \nVida: {self.vida}\nForça: {self.forca}\nDefesa: {self.defesa}\nAgilidade: {self.agilidade}\nInteligencia: {self.inteligencia}"
-
-class Mago:
-    def __init__(self):
-        self.nome = "Mago"
-        self.vida = 800
-        self.forca = 50
-        self.defesa = 80
-        self.agilidade = 80
-        self.inteligencia = 150
-
-    def __str__(self):
-        return f" \nVida: {self.vida}\nForça: {self.forca}\nDefesa: {self.defesa}\nAgilidade: {self.agilidade}\nInteligencia: {self.inteligencia}"        
-
-class Arqueiro:
-    def __init__(self):
-        self.nome = "Arqueiro"
-        self.vida = 90
-        self.forca = 7
-        self.defesa = 6
-        self.agilidade = 10
-        self.inteligencia = 80
-
-    def __str__(self):
-        return f" \nVida: {self.vida}\nForça: {self.forca}\nDefesa: {self.defesa}\nAgilidade: {self.agilidade}\nInteligencia: {self.inteligencia}"
-        
-class Clerigo:
-    def __init__(self):
-        self.nome = "Clérigo"
-        self.vida = 90
-        self.forca = 5
-        self.defesa = 8
-        self.agilidade = 7
-        self.inteligencia = 120
-
-    def __str__(self):
-        return f" \nVida: {self.vida}\nForça: {self.forca}\nDefesa: {self.defesa}\nAgilidade: {self.agilidade}\nInteligencia: {self.inteligencia}"
+# Classe base 
     
-class Assassino:
-    def __init__(self):
-        self.nome = "Assassino"
-        self.vida = 90
-        self.forca = 5
-        self.defesa = 8
-        self.agilidade = 7
-        self.inteligencia = 70
+class brasileiro:
+        def __init__(self, nome):
+            self.level = 1
+            self.nome = nome
+            self.dinheiro = 1320
+            self.exp = 0
+            self.ataque = 390
+            self.defesa = 300
+            self.vida = 500
+            self.inventario = {}
 
-    def __str__(self):
-        return f" \nVida: {self.vida}\nForça: {self.forca}\nDefesa: {self.defesa}\nAgilidade: {self.agilidade}\nInteligencia: {self.inteligencia}"
+        def atacar(self):
+            return f"{self.nome} atacou!"
 
-def escolher_classe():
-    print("Escolha sua classe:")
-    print("1. Guerreiro")
-    print("2. Mago")
-    print("3. Arqueiro")
-    print("4. Clérigo")
-    print("5. Assassino")
+        def defender(self):
+            return f"{self.nome} defendeu!"
 
-    escolha = int(input("Digite o número da sua escolha: "))
+        def mover(self):
+            return f"{self.nome} se moveu"
 
-    if escolha == 1:
-        return Guerreiro()
-    elif escolha == 2:
-        return Mago()
-    elif escolha == 3:
-        return Arqueiro()
-    elif escolha == 4:
-        return Clerigo()
-    elif escolha == 5:
-        return Assassino()
-    else:
-        print("Opção inválida, escolha novamente.")
-        return escolher_classe()
+        def ganhar_experiencia(self, experiencia_ganha):
+            self.exp += experiencia_ganha
+            return f"{self.nome} ganhou {experiencia_ganha} exp"
 
-personagem = escolher_classe()
-print(f"\nVocê escolheu ser um {personagem.nome}\n\nATRIBUTOS: \n {personagem}\n")
+        def pegar_itens(self, *itens):
+            for item in itens:
+                if item.nome in self.inventario:
+                    self.inventario[item.nome].append(item)
+                else:
+                    self.inventario[item.nome] = [item]
+                    
+        def __str__(self):
+            return f"{self.nome} está no level {self.level} | ATK: {self.ataque} | DEF: {self.defesa} | GRANA: {self.dinheiro} |Classe: {type(self).__name__}" 
 
+        def mostrar_inventario(self):
+            return f"INVENTÁRIO | {self.inventario}"
+
+        def ver_dinheiro(self):
+            return f"DINHEIRO | {self.dinheiro}"
+
+
+class Capoeirista(brasileiro): #Mestre de Capoeira
+    pass
+
+class Sambista(brasileiro): #Mestre Sala 
+    pass
+
+class Cangaceiro(brasileiro): # Lampião
+    pass  
+
+
+bernardo = Cangaceiro("Bernardo"); 
+print(bernardo)
